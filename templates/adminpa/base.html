@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>
+    {% block title %}
+    {% endblock title %}
+  </title>
+
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{%  static '/adminpa/modules/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{%  static '/adminpa/modules/fontawesome/css/all.min.css' %}">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="{%  static '/adminpa/modules/jqvmap/dist/jqvmap.min.css' %}">
+  <link rel="stylesheet" href="{%  static '/adminpa/modules/weather-icon/css/weather-icons.min.css' %}">
+  <link rel="stylesheet" href="{%  static '/adminpa/modules/weather-icon/css/weather-icons-wind.min.css' %}">
+  <link rel="stylesheet" href="{%  static '/adminpa/modules/summernote/summernote-bs4.css' %}">
+
+  <!-- Template CSS -->
+    <link rel="stylesheet" href="{%  static '/adminpa/css/style.css' %}">
+    <link rel="stylesheet" href="{%  static '/adminpa/css/components.css' %}">
+
+    {% block custom_css %}
+    {% endblock custom_css %}
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      {% include 'adminpa/navbar.html' %}
+      {% include 'adminpa/sidebar.html' %}
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-header">
+            <h1>{% block page_title %}{% endblock page_title %}</h1>
+          </div>
+          {% block page_content %}
+          {% endblock page_content %}
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          Copyright &copy;2024 <div class="bullet">AncyAshraf</div> 
+        </div>
+        <div class="footer-right">
+          
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="{%  static '/adminpa/modules/jquery.min.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/popper.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/tooltip.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/nicescroll/jquery.nicescroll.min.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/moment.min.js' %}"></script>
+  <script src="{%  static '/adminpa/js/stisla.js' %}"></script>
+  
+  <!-- JS Libraies -->
+  <script src="{%  static '/adminpa/modules/simple-weather/jquery.simpleWeather.min.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/chart.min.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/jqvmap/dist/jquery.vmap.min.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/jqvmap/dist/maps/jquery.vmap.world.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/summernote/summernote-bs4.js' %}"></script>
+  <script src="{%  static '/adminpa/modules/chocolat/dist/js/jquery.chocolat.min.js' %}"></script>
+
+  <!-- Page Specific JS File -->
+  <script src="{%  static '/adminpa/js/page/index-0.js' %}"></script>
+  
+  <!-- Template JS File -->
+  <script src="{%  static '/adminpa/js/scripts.js' %}"></script>
+  <script src="{%  static '/adminpa/js/custom.js' %}"></script>
+
+    {% block custom_js %}
+    {% endblock custom_js %}
+</body>
+</html>

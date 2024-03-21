@@ -19,6 +19,9 @@
     <ul class="navbar-nav">
 		<li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
 		<li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
+		{% if user.is_authenticated and user.is_admin %}
+			<li><a href="{% url "admin_home" %}" class="nav-link"> <i class=""></i> AdminPanel </a></li>
+		{% endif %}
 	</ul> <!-- list-inline //  -->
   </div> <!-- navbar-collapse .// -->
 </div> <!-- container //  -->

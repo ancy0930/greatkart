@@ -41,7 +41,7 @@ def register(request):
             user.phone_number = phone_number
             user.save()
             # user Activation
-            current_site =get_current_site(request)
+            current_site ="http://127.0.0.1:8000"
             mail_subject = 'please activate your account'
             message = render_to_string('accounts/account_verification_email.html',{
                 'user': user,
@@ -72,6 +72,7 @@ def login(request):
         
         user = auth.authenticate(email=email,password=password)
         
+      
         if user is not None:
             auth.login(request,user)
             # messages.success(request,'you are now logged in')

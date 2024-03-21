@@ -1,0 +1,38 @@
+{% extends 'adminpa/base.html' %}
+
+
+{% load static %}
+<!-- BLOCK FOR TITLE-->
+{% block title %}
+Add Product
+{% endblock title %}
+<!-- END Block For Title-->
+
+
+<!-- Block for CUSTOM_CSS -->
+{% block custom_css %}
+
+
+{% endblock custom_css %}
+<!-- END BLOCK FOR CUSTOM  CSS-->
+
+<!-- BLOCK FOR PAGE TITLE -->
+{% block page_title %}
+
+{% endblock page_title %}
+<!--END BLOCK FOR PAGE TITLE-->
+
+
+<!-- BLOCK FOR PAGE MAIN CONTENT -->
+{% block page_content %}
+<h1> Edit Category</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock page_content %}
+<!--End BLOCK FOR PAGE MAIN CONTENT -->
+
+<!-- Block for CUSTOM_js -->
+<!-- END BLOCK FOR CUSTOM_js-->
