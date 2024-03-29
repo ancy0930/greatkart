@@ -1,0 +1,94 @@
+{% extends 'adminpa/base.html' %}
+
+{% load static %}
+<!-- BLOCK FOR TITLE-->
+{% block title %}
+Account List
+{% endblock title %}
+<!-- END Block For Title-->
+
+
+<!-- Block for CUSTOM_CSS -->
+{% block custom_css %}
+<style>
+/* Custom CSS for table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.table img {
+    display: block;
+    max-width: 50px;
+    height: auto;
+    margin: 0 auto;
+}
+</style>
+{% endblock custom_css %}
+<!-- END BLOCK FOR CUSTOM  CSS-->
+
+<!-- BLOCK FOR PAGE TITLE -->
+{% block page_title %}
+
+{% endblock page_title %}
+<!--END BLOCK FOR PAGE TITLE-->
+
+
+<!-- BLOCK FOR PAGE MAIN CONTENT -->
+{% block page_content %}
+
+<h1>Account List</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for account in accounts %}
+        <tr>
+            <td>{{ account.email }}</td>
+            <td>{{ account.username }}</td>
+            <td>{% if account.is_blocked %}Blocked{% else %}Active{% endif %}</td>
+            <td>
+                <form method="post" action="{% url 'accountlist' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="account_id" value="{{ account.id }}">
+                    {% if account.is_blocked %}
+                    <input type="hidden" name="action" value="unblock">
+                    <button type="submit">Unblock</button>
+                    {% else %}
+                    <input type="hidden" name="action" value="block">
+                    <button type="submit">Block</button>
+                    {% endif %}
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock page_content %}
+<!--End BLOCK FOR PAGE MAIN CONTENT -->
+
+
+<!-- Block for CUSTOM_js -->
+<!-- END BLOCK FOR CUSTOM_js-->

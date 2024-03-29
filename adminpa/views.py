@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ProductForm
 from store.models import Product
 from .forms import CategoryForm
 from category.models import Category
+from accounts.models import Account
 
 # Create your views here.
 def demopage(request):
@@ -102,3 +103,31 @@ def delete_category(request, id):
     categories = Category.objects.get(id=id)
     categories.delete()
     return redirect(category_list)
+
+
+
+
+
+def accountlist(request):
+    if request.method == "POST":
+        account_id = request.POST.get("account_id")
+        action = request.POST.get("action")
+
+        if action == "block":
+            account = get_object_or_404(Account, id=account_id)
+            account.is_blocked = True
+            account.save()
+        elif action == "unblock":
+            account = get_object_or_404(Account, id=account_id)
+            account.is_blocked = False
+            account.save()
+
+        return redirect(
+            "accountlist"
+        )  # Redirect to the same page after updating the account
+
+    accounts = Account.objects.all()
+    context = {
+        "accounts": accounts,
+    }
+    return render(request, "adminpa/accountlist.html", context)
